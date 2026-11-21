@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Notebooks and OS
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Non-public, licensed, large or generated datasets
+/data/raw/**
+!/data/raw/.gitkeep
+/data/interim/**
+!/data/interim/.gitkeep
+/data/processed/**
+!/data/processed/.gitkeep
+/data/external/**
+!/data/external/.gitkeep
+
+# Generated analysis outputs
+/reports/figures/**
+!/reports/figures/.gitkeep
+/reports/tables/**
+!/reports/tables/.gitkeep
+
+# Local LaTeX build byproducts (not the final deliverable PDFs)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk

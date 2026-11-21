@@ -1,0 +1,168 @@
+\documentclass[11pt,a4paper]{article}
+% Projet Math Finance, Semaine 2. Compilation : pdflatex (deux passages).
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,top=2.05cm,bottom=1.95cm,left=2.4cm,right=2.4cm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array,enumitem}
+\usepackage{fancyhdr,lastpage,xcolor,hyperref,titlesec,ragged2e}
+\usepackage{setspace}
+\definecolor{navy}{HTML}{172E4D}
+\definecolor{teal}{HTML}{137D8C}
+\definecolor{muted}{HTML}{637487}
+\definecolor{paleblue}{HTML}{EEF5F8}
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=teal,citecolor=teal,
+ pdftitle={Semaine 2 - Synthese theorique et bibliographique},
+ pdfauthor={Aziz Gharbi et Selima Bellil}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.39em}
+\setstretch{1.095}
+\setlist[itemize]{leftmargin=1.35em,itemsep=0.08em,topsep=0.09em}
+\titleformat{\section}{\large\bfseries\color{navy}}{\thesection.}{0.45em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{teal}}{\thesubsection}{0.45em}{}
+\titlespacing*{\section}{0pt}{0.75em}{0.28em}
+\titlespacing*{\subsection}{0pt}{0.60em}{0.2em}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\footnotesize\color{muted}Projet Math Finance \textbar\ Semaine 2}
+\fancyhead[R]{\footnotesize\color{muted}2026--2027}
+\fancyfoot[R]{\footnotesize\color{muted}\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\notecritique}[1]{\par\smallskip\noindent\fcolorbox{teal}{paleblue}{\parbox{0.945\linewidth}{\small\textbf{Lecture critique.} #1}}\par\smallskip}
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{2.2cm}
+{\color{teal}\rule{\textwidth}{1.8pt}}\\[0.6cm]
+{\large\bfseries\color{teal}PROJET MATH FINANCE \quad\textbar\quad SEMAINE 2}\\[1.0cm]
+{\Huge\bfseries\color{navy}Synthèse théorique\\[0.17cm] et bibliographique}\\[0.72cm]
+{\LARGE\color{navy}Intelligence artificielle, attention des investisseurs, primes de risque et volatilité boursière}\\[0.85cm]
+{\large\itshape Autour de Salisu et Badmus (2026) et des travaux fondateurs en économétrie financière}\\[0.85cm]
+{\color{teal}\rule{\textwidth}{1pt}}\\[0.85cm]
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{4.25cm}X@{}}
+Auteurs & Aziz Gharbi\\[0.07cm]
+ & Selima Bellil\\[0.26cm]
+Nature du document & Revue de littérature, cadre théorique et identification des variables et modèles\\[0.15cm]
+Article de référence & Salisu et Badmus, \textit{Quality \& Quantity} (2026)\\[0.15cm]
+Année universitaire & 2026--2027\\
+\end{tabularx}
+\vfill
+{\small\color{muted}La synthèse bibliographique occupe trois pages ; elle est suivie d'une fiche technique et des références.\\
+Ce travail ne présente ni données collectées ni estimations reproduites par les auteurs du rapport.}
+\end{titlepage}
+
+\section{Introduction : de l'information à la prévision du risque}
+La prévision financière ne dépend pas uniquement des prix passés : l'information modifie les anticipations de bénéfices, les décisions de portefeuille et la perception de l'incertitude. L'article de \cite{SalisuBadmus2026} propose de mesurer l'attention portée à l'intelligence artificielle (IA) grâce aux recherches effectuées sur Google, puis de tester sa valeur prédictive pour les \emph{primes de risque} et la \emph{volatilité} des actions américaines. Il compare des sociétés classées comme liées à l'IA et des sociétés dites conventionnelles, avec des données mensuelles couvrant 2012--2024.
+
+La présente revue articule quatre ensembles de travaux : l'incertitude économique, l'attention des investisseurs, l'information médiatique et les méthodes de prévision. Son objectif n'est pas de répéter la fiche de lecture de la semaine 1, mais de \textbf{justifier scientifiquement le choix des variables et des modèles} qui seront mobilisés lors de la reproduction.
+
+\section{Incertitude, décisions d'investissement et prime de risque}
+Pour \cite{Bernanke1983}, les décisions d'investissement difficilement réversibles ont une valeur d'attente : lorsque les perspectives sont incertaines, différer une décision peut être rationnel. Ce mécanisme aide à comprendre pourquoi une innovation majeure peut susciter simultanément enthousiasme et prudence. Il ne prédit pas à lui seul le signe de la réaction des cours boursiers. Une annonce concernant l'IA peut signaler de nouvelles opportunités de croissance, mais aussi des coûts d'adaptation, une concurrence accrue ou des incertitudes réglementaires.
+
+En finance, la prime de risque est la rémunération supplémentaire attendue pour porter un actif risqué plutôt qu'un actif sans risque. Dans l'étude de référence, sa mesure opérationnelle repose sur la différence entre rendement des actions et taux des bons du Trésor américain. La volatilité constitue une autre dimension du risque : elle mesure l'instabilité des rendements et ne doit pas être confondue avec la prime de risque. Il est donc possible, sans contradiction mathématique, qu'une variable soit associée à une prime de risque plus faible et à une volatilité plus forte.
+
+\section{Attention des investisseurs : de la visibilité aux transactions}
+\cite{BarberOdean2008} montrent que les investisseurs particuliers ont tendance à acheter davantage les titres qui retiennent leur attention, notamment lorsqu'ils sont fortement présents dans l'actualité. Cette approche introduit un mécanisme comportemental : parmi des milliers de titres disponibles, l'attention contribue à déterminer quels titres entrent dans le champ des choix possibles.
+
+\cite{DaEngelbergGao2011} proposent d'employer les fréquences de recherches Google comme indicateur direct de l'attention des investisseurs. Leur étude établit que cet indicateur possède un contenu informationnel distinct d'autres mesures d'attention. Elle donne un fondement à l'utilisation de données de recherche en finance, mais ne démontre pas que toute recherche sur une technologie se traduit mécaniquement en un investissement boursier.
+
+\notecritique{Le passage de l'attention portée à une \emph{technologie} à l'attention portée à une \emph{action particulière} n'est pas direct. Une hausse des recherches sur « Artificial Intelligence » peut provenir d'étudiants, de consommateurs ou de professionnels sans intention d'investissement.}
+
+\clearpage
+\section{Contenu des médias : tonalité, importance et limites des recherches}
+La littérature distingue la \emph{quantité d'attention} du \emph{contenu des informations}. \cite{Tetlock2007} étudie la tonalité pessimiste des médias financiers et ses relations avec les cours et les volumes échangés. \cite{LoughranMcDonald2011} soulignent, en outre, que l'analyse du sentiment doit tenir compte du vocabulaire propre à la finance : les dictionnaires génériques peuvent mal interpréter certains termes. Ces recherches justifient conceptuellement une analyse textuelle, mais elles ne constituent pas la méthode utilisée dans l'article de 2026.
+
+Selon la documentation officielle de \cite{GoogleTrends}, les scores Google Trends sont des \textbf{indices normalisés d'intérêt de recherche} (0 à 100 pour un périmètre donné), et non des nombres absolus d'articles publiés. L'article de \cite{SalisuBadmus2026} distingue les recherches « AI News » et « AI Web » ; il n'attribue pas explicitement un poids à chaque annonce suivant son montant financier, son caractère inattendu ou sa portée stratégique.
+
+L'annonce du 22 juillet 2019 d'un investissement d'un milliard de dollars de Microsoft dans OpenAI \cite{Microsoft2019} constitue une illustration de cette limite : un événement potentiellement important pour les anticipations de marché n'est pas identifié en tant que tel par un indice général d'intérêt de recherche. À l'inverse, une accumulation de nouvelles mineures peut susciter beaucoup de recherches. Cette comparaison est illustrative : elle ne prouve pas que les indices se trompent ni quelle a été la réaction causale des marchés.
+
+\section{Pandémie, numérisation et familiarisation avec l'IA}
+Les auteurs du travail de référence suggèrent qu'une partie de l'essor de l'IA entre 2018 et 2022 pourrait être liée aux besoins de productivité et de télétravail pendant la pandémie. Une \textbf{interprétation alternative} concerne l'élargissement des usages numériques et de l'exposition à l'information. Par exemple, \cite{Ofcom2020} relève au Royaume-Uni une forte progression des appels vidéo hebdomadaires chez les internautes âgés de 65 ans et plus au début de la pandémie. Cet indicateur témoigne d'une évolution de certains usages numériques, \emph{pas} d'une augmentation universelle des réseaux sociaux ou de la confiance dans l'IA.
+
+La méta-analyse de \cite{Montoya2017} étudie les relations entre exposition répétée, familiarité et appréciation. Elle permet de formuler une hypothèse : la répétition de contenus présentant l'IA comme une technologie centrale pour l'avenir pourrait modifier la familiarité et, éventuellement, les représentations du public. Cependant, les effets psychologiques étudiés ne suffisent pas à démontrer une diminution du \emph{risque financier objectif} ni même de la perception du risque des investisseurs. Cette proposition doit donc être présentée comme une \textbf{piste de recherche à vérifier}, et non comme une explication établie de la hausse des cours.
+
+\section{Pourquoi une démarche économétrique spécifique ?}
+Les régressions prédictives financières présentent des difficultés caractéristiques : persistance des prédicteurs, variance conditionnelle des erreurs variable au cours du temps et corrélation potentielle entre innovations des prédicteurs et erreurs de prévision. \cite{WesterlundNarayan2012} montrent que le choix de l'estimateur peut avoir des conséquences sur la prévision des rendements. \cite{WesterlundNarayan2015} développent des tests exploitant l'hétéroscédasticité conditionnelle ; l'article de référence mobilise leur démarche et une procédure FQGLS.
+
+L'idée de FQGLS est de tenir compte de l'hétéroscédasticité en pondérant les observations en fonction d'une estimation de leur dispersion résiduelle. La pondération n'exonère toutefois pas de vérifier la spécification du modèle, l'alignement temporel des données ni la robustesse des erreurs standards. Le texte principal de Salisu et Badmus ne suffit pas à établir tous les détails de mise en œuvre ; les éléments absents devront être déclarés lorsque nous coderons l'estimation.
+
+\clearpage
+\section{Prévision hors échantillon : comment juger le gain apporté par l'IA ?}
+Un ajustement satisfaisant dans l'échantillon ne garantit pas des prévisions utiles. C'est pourquoi \cite{SalisuBadmus2026} confrontent les modèles enrichis par l'information IA à des références simples : moyenne historique et marche aléatoire / modèle autorégressif de référence, selon la description donnée dans l'article. La qualité est évaluée notamment par la \emph{racine de l'erreur quadratique moyenne} (RMSE) et sa valeur relative au modèle de référence.
+
+\cite{ClarkWest2007} proposent un test pour comparer la précision prédictive de modèles emboîtés, en tenant compte du bruit d'estimation supplémentaire introduit par le modèle le plus riche. Ce test est particulièrement pertinent lorsqu'un modèle contenant les indicateurs IA est comparé à un modèle réduit qui ne les contient pas. Son application suppose néanmoins de vérifier la forme exacte des modèles comparés et la dépendance des erreurs aux différents horizons.
+
+L'article présente des horizons de trois, six et douze mois, ainsi que des modèles utilisant alternativement l'inflation ou le VIX. Le VIX est une mesure issue des anticipations de volatilité implicite des options sur le S\&P 500 ; il ne doit pas être confondu avec une mesure réalisée de la volatilité des portefeuilles étudiés. La source FRED \cite{FREDVIX} diffuse la série quotidienne VIXCLS, que les auteurs déclarent convertir en moyenne mensuelle.
+
+\section{Positionnement du projet et conclusions de la revue}
+La littérature conduit à distinguer \textbf{trois mécanismes} : (i) la nouvelle information peut transformer les anticipations économiques ; (ii) sa visibilité peut déplacer l'attention et les choix des investisseurs ; (iii) son contenu, sa tonalité et sa nouveauté peuvent compter indépendamment du volume d'attention. L'article de 2026 teste surtout le deuxième mécanisme, avec des facteurs de contrôle macro-financiers et une stratégie de comparaison hors échantillon.
+
+Pour notre travail, l'ordre scientifique reste le suivant : \textbf{reproduire la méthodologie publiée}, puis tester sa robustesse, et seulement ensuite examiner une éventuelle extension NLP/agent IA. Une future couche NLP pourrait caractériser la tonalité, la nouveauté et l'importance économique d'annonces individuelles, tandis qu'un agent pourrait assurer collecte, dédoublonnage et classification traçable. Cette architecture n'est \textbf{ni une composante de l'article original, ni une réalisation du présent livrable}.
+
+\notecritique{Question de recherche préparatoire : à information disponible au moment de la prévision et à complexité comparable, une mesure de \emph{contenu économique} des annonces apporte-t-elle un gain hors échantillon supérieur à celui de la seule attention mesurée par Google Trends ?}
+
+\section{Transition vers la reproduction}
+La lecture croisée des travaux impose de préciser avant l'estimation la construction des portefeuilles IA/traditionnels, la volatilité des rendements, la conversion du taux sans risque, l'extraction historique de Google Trends et le calendrier d'information de chaque prévision. Les équations publiées font notamment intervenir $\Delta AI\_News_t$ : en prévision réelle, toute variable contemporaine doit être disponible \emph{à la date effective de la prédiction}. Ces points constituent le programme méthodologique préalable à la collecte des données en semaines 3 et 4.
+
+\clearpage
+\section*{Annexe technique -- Variables et modèles identifiés}
+\addcontentsline{toc}{section}{Annexe technique}
+\textbf{Champ de l'étude.} Marché américain ; fréquence mensuelle ; 2012--2024 ; 503 entreprises, dont 26 classées IA et 477 conventionnelles (Salisu et Badmus, 2026).
+
+\smallskip
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.16}
+\begin{tabularx}{\textwidth}{@{}p{2.75cm}p{2.15cm}X@{}}
+\toprule
+\textbf{Variable} & \textbf{Rôle} & \textbf{Définition et vérification prévue}\\
+\midrule
+$RiskPrem_t$ & Cible 1 & Rendement moins Treasury bill ; unités et agrégation du portefeuille à expliciter.\\
+$RetVol_t$ & Cible 2 & Volatilité des rendements ; formule exacte à vérifier dans les compléments ou auprès des auteurs.\\
+$AI\_News_t$ & Prédicteur & Recherche « Artificial Intelligence » en catégorie actualités de Google Trends, indice relatif normalisé.\\
+$AI\_Web_t$ & Prédicteur alternatif & Recherche Web Google Trends ; extraction historique et périmètre à documenter.\\
+$AI\_ETF_t$ & Proxy alternatif & ETF technologique associé à l'IA selon l'étude ; symbole exact et transformation à valider.\\
+Inflation & Contrôle & Inflation américaine ; série, fréquence et transformation exacte à confirmer.\\
+VIX & Contrôle & FRED/VIXCLS ; moyenne mensuelle des observations quotidiennes selon l'article.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\vspace{0.1cm}
+\textbf{Spécifications du texte original} (une variante de l'indicateur IA et un contrôle à la fois) :
+\begin{align}
+RiskPrem_t &= \alpha_0+\alpha_1RiskPrem_{t-1}+\alpha_2AI\_News_{t-1}
+ +\alpha_3\Delta AI\_News_t+\delta Control_t+u_t,\\
+RetVol_t &= \beta_0+\beta_1RetVol_{t-1}+\beta_2AI\_News_{t-1}
+ +\beta_3\Delta AI\_News_t+\sigma Control_t+v_t.
+\end{align}
+La notation $Control_t$ explicite une contemporanéité indicative ; l'article écrit « Control » sans préciser dans ces formules son calendrier exact. Ce point ne doit pas être interprété comme une documentation suffisante de la prévision temps réel.
+
+\smallskip
+\textbf{Prévision et diagnostics :} estimation WN/FQGLS ; références moyenne historique et modèle de marche aléatoire ; horizons 3, 6 et 12 mois ; RMSE relative et test de Clark--West. Vérifier stationnarité, autocorrélation, ARCH et disponibilité temporelle des prédicteurs. Les tableaux 1 à 4 de l'article constituent les repères prioritaires de comparaison.
+
+\smallskip
+\textbf{Statut :} identification bibliographique et méthodologique uniquement ; aucune validation empirique propre à notre équipe à ce stade.
+
+\clearpage
+\section*{Références bibliographiques}
+\addcontentsline{toc}{section}{Références bibliographiques}
+\begingroup\small\setlength{\parskip}{0.08em}
+\begin{thebibliography}{99}
+\bibitem{BarberOdean2008} Barber, B. M. et Odean, T. (2008). All That Glitters: The Effect of Attention and News on the Buying Behavior of Individual and Institutional Investors. \textit{Review of Financial Studies}, 21(2), 785--818. \href{https://doi.org/10.1093/rfs/hhm079}{doi:10.1093/rfs/hhm079}.
+\bibitem{Bernanke1983} Bernanke, B. S. (1983). Irreversibility, Uncertainty, and Cyclical Investment. \textit{Quarterly Journal of Economics}, 98(1), 85--106. \href{https://doi.org/10.2307/1885568}{doi:10.2307/1885568}.
+\bibitem{ClarkWest2007} Clark, T. E. et West, K. D. (2007). Approximately Normal Tests for Equal Predictive Accuracy in Nested Models. \textit{Journal of Econometrics}, 138(1), 291--311. \href{https://doi.org/10.1016/j.jeconom.2006.05.023}{doi:10.1016/j.jeconom.2006.05.023}.
+\bibitem{DaEngelbergGao2011} Da, Z., Engelberg, J. et Gao, P. (2011). In Search of Attention. \textit{Journal of Finance}, 66(5), 1461--1499. \href{https://doi.org/10.1111/j.1540-6261.2011.01679.x}{doi:10.1111/j.1540-6261.2011.01679.x}.
+\bibitem{FREDVIX} Federal Reserve Bank of St. Louis. \textit{CBOE Volatility Index: VIX (VIXCLS)}. \url{https://fred.stlouisfed.org/series/VIXCLS} (consulté en novembre 2026).
+\bibitem{GoogleTrends} Google News Initiative. \textit{Basics of Google Trends: Understanding the Numbers}. \url{https://newsinitiative.withgoogle.com/resources/trainings/google-trends/basics-of-google-trends/} (consulté en novembre 2026).
+\bibitem{LoughranMcDonald2011} Loughran, T. et McDonald, B. (2011). When Is a Liability Not a Liability? Textual Analysis, Dictionaries, and 10-Ks. \textit{Journal of Finance}, 66(1), 35--65. \href{https://doi.org/10.1111/j.1540-6261.2010.01625.x}{doi:10.1111/j.1540-6261.2010.01625.x}.
+\bibitem{Microsoft2019} Microsoft (22 juillet 2019). \textit{OpenAI forms exclusive computing partnership with Microsoft to build new Azure AI supercomputing technologies}. \href{https://news.microsoft.com/source/2019/07/22/openai-forms-exclusive-computing-partnership-with-microsoft-to-build-new-azure-ai-supercomputing-technologies/}{Communiqué officiel Microsoft, 22 juillet 2019}.
+\bibitem{Montoya2017} Montoya, R. M., Horton, R. S., Vevea, J. L., Citkowicz, M. et Lauber, E. A. (2017). A Re-examination of the Mere Exposure Effect: The Influence of Repeated Exposure on Recognition, Familiarity, and Liking. \textit{Psychological Bulletin}, 143(5), 459--498. \href{https://doi.org/10.1037/bul0000085}{doi:10.1037/bul0000085}.
+\bibitem{Ofcom2020} Ofcom (2020). \textit{UK's Internet Use Surges to Record Levels}. \url{https://www.ofcom.org.uk/media-use-and-attitudes/online-habits/uk-internet-use-surges}.
+\bibitem{SalisuBadmus2026} Salisu, A. A. et Badmus, S. (2026). Can AI News Improve the Out-of-Sample Forecasts of Risk Premia and Volatility in the U.S. Stock Market? \textit{Quality \& Quantity}, 60, 16125--16144. \href{https://doi.org/10.1007/s11135-026-02816-9}{doi:10.1007/s11135-026-02816-9}.
+\bibitem{Tetlock2007} Tetlock, P. C. (2007). Giving Content to Investor Sentiment: The Role of Media in the Stock Market. \textit{Journal of Finance}, 62(3), 1139--1168. \href{https://doi.org/10.1111/j.1540-6261.2007.01232.x}{doi:10.1111/j.1540-6261.2007.01232.x}.
+\bibitem{WesterlundNarayan2012} Westerlund, J. et Narayan, P. K. (2012). Does the Choice of Estimator Matter When Forecasting Returns? \textit{Journal of Banking \& Finance}, 36(9), 2632--2640. \href{https://doi.org/10.1016/j.jbankfin.2012.06.005}{doi:10.1016/j.jbankfin.2012.06.005}.
+\bibitem{WesterlundNarayan2015} Westerlund, J. et Narayan, P. K. (2015). Testing for Predictability in Conditionally Heteroskedastic Stock Returns. \textit{Journal of Financial Econometrics}, 13(2), 342--375. \href{https://doi.org/10.1093/jjfinec/nbu001}{doi:10.1093/jjfinec/nbu001}.
+\end{thebibliography}
+\endgroup
+\end{document}

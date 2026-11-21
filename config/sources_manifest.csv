@@ -1,0 +1,9 @@
+id,variable,fournisseur_article,frequence_originale,transformation_a_confirmer,etat,commentaire
+universe,AI vs conventional classification,S&P 500 + ETF Database,composition,Classification exactly as Table 5 + conventional remainder,TO_VERIFY,503 observations firms incl. 26 AI as reported; historical universe issue
+prices,Stock prices,Stock Analysis PRO,monthly or daily,Price adjustment and aggregation rules,RESTRICTED,Potentially paid dataset; do not commit licensed data
+ai_news_search,AI News Search,Google Trends News Search,monthly,Topic/term geography window and index normalization,TO_VERIFY,Not raw news article counts
+ai_web_search,AI Web Search,Google Trends Web Search,monthly,Topic/term geography window and index normalization,TO_VERIFY,Not raw news article counts
+ai_etf,AI ETF proxy,iShares US Technology ETF as cited,monthly,Exact ticker adjusted prices and proxy interpretation,TO_VERIFY,Verify original footnote before choosing series
+vix,VIX,FRED VIXCLS,daily to monthly,Monthly mean of daily observations,KNOWN_FROM_PAPER,Footnote specifies monthly daily average
+inflation,US inflation,Source not precisely specified in article,monthly,CPI-based inflation level or change / units to verify,TO_VERIFY,Do not assume a specific FRED ticker
+risk_free,US Treasury bill risk-free rate,US Treasury bills,monthly,Matching period and rate-to-return conversion,TO_VERIFY,Do not assume rate tenor without confirmation

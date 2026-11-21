@@ -1,0 +1,15 @@
+study:
+  reference: "Salisu & Badmus (2026), DOI: 10.1007/s11135-026-02816-9"
+  original_sample_start: "2012-01"
+  original_sample_end: "2024-12"
+  frequency: "monthly"
+  original_sp500_company_count: 503
+  original_ai_company_count: 26
+  # The original article's exact portfolio aggregation/volatility definitions need verification.
+  replication_status: "not_started"
+
+forecasting:
+  published_horizons_months: [3, 6, 12]
+  benchmarks: ["historical_average", "random_walk"]
+  published_metrics: ["relative_rmse", "clark_west"]
+  # Do not treat these as implementation specifications until the protocol is confirmed.

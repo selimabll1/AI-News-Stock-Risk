@@ -1,0 +1,451 @@
+\documentclass[11pt,a4paper]{article}
+
+% -----------------------------------------------------------------------------
+% Fiche de lecture scientifique -- Projet Math Finance, 2026--2027
+% Auteurs : Aziz Gharbi et Selima Bellil
+% Compilation : pdflatex (deux passes) ou latexmk -pdf
+% -----------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,top=2.35cm,bottom=2.30cm,left=2.55cm,right=2.55cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{needspace}
+\usepackage{url}
+
+\definecolor{navy}{HTML}{172E4D}
+\definecolor{teal}{HTML}{137D8C}
+\definecolor{grey}{HTML}{5C6C7B}
+\definecolor{light}{HTML}{E8F0F4}
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=teal,citecolor=teal,
+    pdftitle={Fiche de lecture scientifique - Intelligence artificielle, primes de risque et volatilite boursiere},
+    pdfauthor={Aziz Gharbi et Selima Bellil}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.43em}
+\setstretch{1.12}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.15em,topsep=0.15em}
+\setlist[enumerate]{leftmargin=1.55em,itemsep=0.15em,topsep=0.15em}
+\titleformat{\section}{\Large\bfseries\color{navy}}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{teal}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{navy}}{\thesubsubsection}{0.7em}{}
+\titlespacing*{\section}{0pt}{1.3em}{0.65em}
+\titlespacing*{\subsection}{0pt}{0.85em}{0.35em}
+\captionsetup{font=small,labelfont={bf,color=navy}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\color{grey}Projet Math Finance \textbar\ Fiche de lecture}
+\fancyhead[R]{\footnotesize\color{grey}2026--2027}
+\fancyfoot[L]{}
+\fancyfoot[R]{\footnotesize\color{grey}Page \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\sourcearticle}{Salisu et Badmus (2026)}
+\newcommand{\notereproduction}{\textit{Point de vigilance pour la reproduction.} }
+
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{2.0cm}
+{\color{teal}\rule{\textwidth}{1.7pt}}\\[0.55cm]
+{\large\bfseries\color{teal} PROJET MATH FINANCE \quad\textbar\quad SEMAINE 1}\\[1.1cm]
+{\Huge\bfseries\color{navy} Fiche de lecture\\[0.20cm] scientifique}\\[0.55cm]
+{\LARGE\color{navy} Intelligence artificielle,\\ primes de risque et volatilité boursière}\\[0.95cm]
+{\large Analyse critique de l'article de Salisu et Badmus (2026)}\\[0.28cm]
+{\itshape Can AI News Improve the Out-of-Sample Forecasts of Risk Premia\\ and Volatility in the U.S. Stock Market?}\\[1.0cm]
+{\color{teal}\rule{\textwidth}{1.0pt}}\\[0.9cm]
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{4.5cm}X@{}}
+Auteurs du rapport & Aziz Gharbi\\[0.12cm]
+& Selima Bellil\\[0.34cm]
+Nature du document & Fiche de lecture scientifique et analyse critique\\[0.20cm]
+Référence étudiée & \textit{Quality \& Quantity}, vol. 60, p. 16125--16144\\[0.20cm]
+Année universitaire & 2026--2027\\
+\end{tabularx}
+\vfill
+{\small\color{grey} Travail de lecture, d'analyse et de préparation d'une reproduction économétrique.\\
+Ce document ne présente aucune estimation empirique originale des étudiants.}
+\end{titlepage}
+
+\pagenumbering{arabic}
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+
+\section{Identification et présentation de l'article}
+\begin{table}[H]
+\centering\small
+\caption{Fiche bibliographique de l'étude de référence}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.15cm}X@{}}
+\toprule
+Titre & \textit{Can AI News Improve the Out-of-Sample Forecasts of Risk Premia and Volatility in the U.S. Stock Market?}\\
+Auteurs & Afees A. Salisu et Sheriff Badmus\\
+Revue / année & \textit{Quality \& Quantity}, 2026, vol. 60, p. 16125--16144\\
+Publication en ligne & 14 mai 2026\\
+DOI & \href{https://doi.org/10.1007/s11135-026-02816-9}{10.1007/s11135-026-02816-9}\\
+Mots-clés & Intelligence artificielle, actions liées à l'IA, prévisibilité, diversification, évaluation des prévisions\\
+Codes JEL & C53, D80, G11\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+L'article de \cite{SalisuBadmus2026} étudie le contenu prédictif de l'attention portée à l'intelligence artificielle (IA) pour deux caractéristiques du marché boursier américain : la \textbf{prime de risque des actions} et la \textbf{volatilité de leurs rendements}. Son originalité est de comparer les actions d'entreprises considérées comme exposées à l'IA et celles classées comme conventionnelles, puis d'évaluer si des indicateurs de recherche liés à l'IA améliorent les prévisions par rapport à des modèles de référence.
+
+Il s'agit d'une \textbf{étude empirique en économétrie financière}. L'expression « intelligence artificielle » désigne ici principalement \emph{l'objet de l'information observée} ; le coeur de la démarche consiste en des régressions prédictives et des tests de prévision, et non en l'entraînement d'un réseau neuronal.
+
+\section{Contexte scientifique et problématique}
+\subsection{Motivation économique}
+L'essor des technologies d'IA modifie les anticipations de croissance, de rentabilité et de concurrence entre entreprises. Les annonces d'investissement, les progrès technologiques ou encore les controverses réglementaires sont susceptibles de capter l'attention des investisseurs. Les prix d'actifs peuvent alors réagir aux changements d'anticipations, même lorsque les effets économiques de long terme sont difficiles à quantifier.
+
+La littérature mobilisée dans l'article souligne plusieurs mécanismes : l'attention limitée des investisseurs, l'incertitude relative aux nouvelles technologies et les effets macroéconomiques sur la valorisation des entreprises. Il devient donc pertinent d'examiner si les recherches relatives à l'IA contiennent une information supplémentaire par rapport à l'historique des marchés.
+
+\subsection{Question de recherche}
+La problématique centrale peut être formulée ainsi :
+\begin{quote}
+\emph{Dans quelle mesure les indicateurs d'attention aux nouvelles relatives à l'IA améliorent-ils les prévisions hors échantillon des primes de risque et de la volatilité des actions américaines, par rapport aux modèles économétriques de référence ?}
+\end{quote}
+Trois sous-questions structurent l'analyse : (i) l'attention liée à l'IA est-elle associée aux primes de risque et à la volatilité ? (ii) cette association est-elle différente selon l'exposition des entreprises à l'IA ? (iii) le pouvoir prédictif résiste-t-il à l'évaluation hors échantillon et à la prise en compte de l'inflation ou du VIX ?
+
+\subsection{Contribution annoncée}
+Selon les auteurs, l'apport de l'étude réside dans l'association de trois dimensions : des indicateurs d'attention à l'IA, une comparaison entre actions liées à l'IA et actions conventionnelles, ainsi qu'une évaluation quantitative de la qualité des prévisions. Le travail s'inscrit dans les recherches consacrées au rôle de l'information, des innovations technologiques et de l'incertitude dans l'évaluation des actifs.
+
+\section{Objectifs et hypothèses de recherche}
+\subsection{Objectifs}
+L'article poursuit quatre objectifs complémentaires :
+\begin{enumerate}
+\item mesurer l'association entre l'attention portée à l'IA et les primes de risque boursières ;
+\item étudier la relation entre cette attention et la volatilité des rendements ;
+\item comparer les résultats pour les entreprises liées à l'IA et les entreprises conventionnelles ;
+\item déterminer si l'introduction de ces indicateurs améliore la précision des prévisions hors échantillon, relativement à des modèles simples.
+\end{enumerate}
+
+\subsection{Hypothèses reformulées pour notre lecture}
+Les hypothèses suivantes sont \textbf{notre formalisation analytique} des questions et attentes exposées par les auteurs ; elles ne constituent pas une numérotation officielle de l'article.
+\begin{table}[H]
+\centering\small
+\caption{Hypothèses de lecture et critères d'examen}
+\begin{tabularx}{\textwidth}{@{}p{0.95cm}X X@{}}
+\toprule
+\textbf{Code} & \textbf{Hypothèse de travail} & \textbf{Élément de vérification}\\
+\midrule
+H1 & L'attention liée à l'IA est négativement associée aux primes de risque. & Signe et significativité du coefficient de l'indicateur IA.\\
+H2 & L'attention liée à l'IA est positivement associée à la volatilité. & Signe et significativité dans l'équation de volatilité.\\
+H3 & L'ampleur de l'association diffère entre les deux catégories d'actions. & Comparaison des estimations ; test formel requis pour établir une différence significative.\\
+H4 & Les indicateurs IA améliorent la prévision hors échantillon. & RMSE relative et test de Clark--West face aux références.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Ces hypothèses concernent d'abord des \textbf{relations statistiques et prédictives}. Des coefficients significatifs ne démontrent pas, à eux seuls, une relation de causalité entre l'actualité de l'IA et les mouvements boursiers.
+
+\section{Données, échantillon et construction des variables}
+\subsection{Périmètre temporel et boursier}
+L'étude couvre la période \textbf{2012--2024} à fréquence \textbf{mensuelle}. Les auteurs partent d'un ensemble de \textbf{503 sociétés du S\&P 500}, dont \textbf{26} sont classées comme liées à l'IA sur la base de leurs présences dans des fonds négociés en bourse thématiques identifiés dans ETF Database. Les \textbf{477} autres appartiennent à la catégorie conventionnelle. La liste des 26 sociétés figure dans le tableau~5 de l'annexe de l'article : elle comprend notamment Microsoft (MSFT), NVIDIA (NVDA), Alphabet (GOOGL), Amazon (AMZN) et Meta (META).
+
+Il s'agit d'une \emph{classification fondée sur l'exposition repérée dans des ETF thématiques}, et non d'une estimation indépendante de la proportion exacte des revenus attribuables à l'IA dans chaque entreprise. Le jeu de données boursières utilisé par les auteurs provient de \emph{Stock Analysis PRO}.
+
+\subsection{Définitions et rôle des variables}
+\begin{table}[H]
+\centering\footnotesize
+\caption{Dictionnaire conceptuel des principales variables}
+\begin{tabularx}{\textwidth}{@{}p{2.65cm}p{2.25cm}X@{}}
+\toprule
+\textbf{Variable} & \textbf{Rôle} & \textbf{Définition et source indiquées dans l'article}\\
+\midrule
+Prime de risque ($RiskPrem_t$) & Dépendante & Rendement boursier diminué du taux sans risque représenté par les bons du Trésor américain (Treasury bills).\\
+Volatilité ($RetVol_t$) & Dépendante & Mesure de la volatilité des rendements ; construction opérationnelle détaillée à vérifier avant codage.\\
+AI News Search & Explicative & Indice de recherches sur l'IA dans le canal « actualités » de Google Trends.\\
+AI Web Search & Explicative & Indice de recherches générales liées à l'IA dans Google Trends.\\
+AI ETF & Proxy alternatif & Série de prix d'un ETF technologique utilisé comme proxy d'exposition à l'IA ; l'article renvoie à l'iShares U.S. Technology ETF.\\
+Inflation américaine & Contrôle & Variable macroéconomique décrivant l'évolution des prix.\\
+VIX & Contrôle & Indice de volatilité implicite du CBOE ; série VIXCLS de FRED, agrégée en moyenne mensuelle à partir des données quotidiennes.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Le principe financier de la prime de risque est :
+\begin{equation}
+RiskPrem_t = R_t-R_{f,t},
+\label{eq:premium}
+\end{equation}
+avec $R_t$ le rendement de l'actif ou du portefeuille considéré et $R_{f,t}$ le taux sans risque converti à une fréquence et à des unités compatibles. L'équation~\eqref{eq:premium} traduit la définition donnée dans l'article ; elle ne préjuge pas de la convention exacte de rendement simple, logarithmique ou d'agrégation qui devra être documentée pendant la reproduction.
+
+\subsection{Mesure de l'attention à l'IA}
+Les auteurs expliquent avoir interrogé Google Trends à partir de l'expression \textit{Artificial Intelligence}, puis extrait mensuellement deux variantes : les recherches liées aux actualités et celles effectuées sur le Web. Les valeurs reflètent un \textbf{intérêt de recherche indexé} : elles ne représentent ni un comptage exhaustif des articles publiés, ni une mesure directe de la valeur économique de chaque annonce.
+
+Les séries d'attention montrent une accélération importante à partir de la fin de 2022, après une période relativement stable jusqu'aux années précédentes (figure~1 de l'article). Les auteurs utilisent aussi un proxy boursier basé sur un ETF pour confronter l'attention déclarée à des données de marché.
+
+\notereproduction L'article ne donne pas, dans son texte principal, toutes les règles nécessaires pour reconstruire sans ambiguïté les portefeuilles, la volatilité et les transformations temporelles. Ces éléments doivent être précisés avant toute affirmation de « reproduction exacte ». Les auteurs indiquent par ailleurs que les données sont disponibles sur demande, certaines n'étant pas publiques.
+
+\section{Cadre théorique et méthodologie économétrique}
+\subsection{Fondements théoriques}
+Plusieurs approches justifient le recours à des données d'attention :
+\begin{itemize}
+\item \textbf{Incertitude et investissement :} une nouvelle information sur une technologie émergente peut modifier les anticipations et inciter les agents à différer certaines décisions, conformément aux travaux mobilisés autour de Bernanke et Bloom.
+\item \textbf{Attention des investisseurs :} l'information effectivement consultée peut influencer les titres suivis et les transactions réalisées ; l'article s'appuie notamment sur l'analyse de Barber et Odean (2008).
+\item \textbf{Innovations et cycle de vie :} une rupture technologique peut transformer les perspectives de profits, le risque perçu et la dynamique de volatilité, avec des effets susceptibles d'évoluer dans le temps.
+\item \textbf{Facteurs macroéconomiques :} inflation et conditions générales de marché peuvent intervenir simultanément dans la formation des rendements et du risque.
+\end{itemize}
+Ces mécanismes donnent un sens économique aux modèles estimés, sans assurer a priori le signe ou la stabilité de leurs coefficients dans tous les contextes.
+
+\subsection{Propriétés des séries et choix de l'estimateur}
+L'article met en évidence des enjeux de \emph{persistance}, d'\emph{autocorrélation} et d'\emph{hétéroscédasticité conditionnelle}. Lorsque la variance des erreurs varie dans le temps, une estimation qui ignore cette propriété peut fournir des inférences inadaptées ; une forte persistance des prédicteurs peut également compliquer l'analyse de la prévisibilité.
+
+Les auteurs appliquent la méthode de \textbf{Westerlund--Narayan (2012, 2015)}, présentée comme une approche \textbf{FQGLS} (\textit{Feasible Quasi-Generalized Least Squares}) utilisant une prépondération liée à l'inverse de l'écart-type estimé des résidus. L'article ajoute une variation contemporaine du prédicteur pour traiter les distorsions associées à sa dynamique. Il serait excessif d'en déduire, à ce stade, une procédure algorithmique entièrement spécifiée : sa mise en oeuvre précise doit être confrontée aux références originales et aux éventuels documents supplémentaires.
+
+Le tableau~6 de l'article rapporte notamment des tests ARCH-LM et de Ljung--Box à plusieurs retards, mobilisés pour documenter les propriétés des séries.
+
+\subsection{Équation des primes de risque}
+L'équation~(1) de l'article s'écrit, avec une notation typographique homogénéisée :
+\begin{equation}
+\label{eq:risk}
+RiskPrem_t = \alpha_0 + \alpha_1 RiskPrem_{t-1}
+ + \alpha_2 AI\_News_{t-1} + \alpha_3\Delta AI\_News_t
+ + \delta Control + \mu_t.
+\end{equation}
+Le coefficient $\alpha_1$ représente la dépendance à la prime passée ; $\alpha_2$ mesure la contribution prédictive associée au niveau retardé de l'indicateur IA ; $\alpha_3$ accompagne sa variation contemporaine ; $\delta$ correspond à la variable de contrôle (inflation ou VIX dans les spécifications présentées) et $\mu_t$ est l'erreur.
+
+\subsection{Équation de la volatilité des rendements}
+L'équation~(2) conserve la structure générale en remplaçant la variable cible :
+\begin{equation}
+\label{eq:vol}
+RetVol_t = \beta_0 + \beta_1 RetVol_{t-1}
+ + \beta_2 AI\_News_{t-1} + \beta_3\Delta AI\_News_t
+ + \sigma Control + \mu_t.
+\end{equation}
+L'analyse porte donc sur deux dimensions distinctes du risque boursier : l'excès de rendement et la variabilité des rendements. Une baisse de prime de risque estimée ne signifie pas mécaniquement une baisse de volatilité.
+
+\subsection{Variables et spécifications comparées}
+Les auteurs font varier l'indicateur d'attention (AI News Search, AI Web Search) et lui substituent, en analyse complémentaire, le proxy AI ETF. Ils présentent des spécifications sans contrôle et d'autres augmentées de l'inflation ou du VIX, pour chacune des deux catégories d'actions et chacune des deux variables dépendantes. La comparaison porte à la fois sur les signes, la significativité et la qualité de prévision.
+
+\section{Stratégie de prévision et critères d'évaluation}
+\subsection{Modèles de référence et prévisions hors échantillon}
+Pour juger l'utilité de l'indicateur IA, les auteurs retiennent deux références : \textbf{la moyenne historique}, qui ne mobilise pas les variables explicatives d'IA, et \textbf{le modèle de marche aléatoire} tel qu'il est décrit dans l'article, fondé sur une constante et la variable dépendante retardée. Ce dernier intitulé ne doit pas conduire à imposer arbitrairement une marche aléatoire stricte à coefficient unitaire lors de la future implémentation.
+
+L'article reporte des comparaisons à \textbf{3, 6 et 12 mois}. Le protocole exact de découpage temporel, la réestimation éventuelle des paramètres et la définition opérationnelle de chaque horizon doivent être explicités pour reproduire les tableaux : la seule mention de « 3, 6, 12 mois » ne permet pas de déduire tous ces choix.
+
+\subsection{RMSE et RMSE relative}
+Pour $T$ observations véritablement hors échantillon, la racine de l'erreur quadratique moyenne est :
+\begin{equation}
+\label{eq:rmse}
+RMSE = \sqrt{\frac{1}{T}\sum_{t=1}^{T}(y_t-\widehat y_t)^2}.
+\end{equation}
+Le ratio de comparaison utilisé dans les tableaux peut se lire comme :
+\begin{equation}
+\label{eq:rrmse}
+RMSE_{rel} = \frac{RMSE_{\text{modèle avec IA}}}{RMSE_{\text{référence}}}.
+\end{equation}
+Un ratio \textbf{inférieur à 1} indique une erreur de prévision plus faible pour le modèle enrichi ; un ratio \textbf{supérieur à 1} indique une performance moins bonne. Une valeur faible ne prouve pas, à elle seule, que l'amélioration est statistiquement significative.
+
+\subsection{Test de Clark--West}
+Les auteurs utilisent le test de \cite{ClarkWest2007} pour comparer les erreurs de modèles prédictifs emboîtés. Leur article indique, pour le test unilatéral, des seuils critiques de statistique de test de $1{,}282$ (10\,\%), $1{,}645$ (5\,\%) et $2{,}00$ (1\,\%). Ce test complète la RMSE en évaluant si l'amélioration prédictive est compatible avec une supériorité statistiquement significative de la spécification enrichie. Les conditions de validité doivent être contrôlées selon le schéma de prévision effectivement retenu.
+
+\notereproduction La présence de $\Delta AI\_News_t$ dans les équations~\eqref{eq:risk} et~\eqref{eq:vol} exige une attention particulière : si l'on prévoit la période $t$ depuis $t-1$, la variation observée durant $t$ peut ne pas être disponible au moment de la prévision. Il faut donc vérifier l'ensemble d'information réellement utilisé par les auteurs afin d'éviter toute fuite de données futures.
+
+\section{Principaux résultats empiriques de l'article}
+\subsection{Primes de risque et volatilité : signes observés}
+Le tableau~2 de \cite{SalisuBadmus2026} présente, sous plusieurs spécifications, des coefficients \textbf{négatifs} pour l'attention liée à l'IA dans les équations de prime de risque, et généralement \textbf{positifs} dans les équations de volatilité. Le tableau~\ref{tab:coeff} restitue un exemple précis : la variante utilisant \emph{AI News Search} et le contrôle \emph{VIX}.
+
+\begin{table}[H]
+\centering\small
+\caption{Coefficients de l'indicateur AI News avec contrôle VIX (extraits du tableau~2 de l'article)}
+\label{tab:coeff}
+\begin{tabularx}{\textwidth}{@{}Xcc@{}}
+\toprule
+\textbf{Variable dépendante} & \textbf{Actions IA} & \textbf{Actions conventionnelles}\\
+\midrule
+Prime de risque : coefficient AI News & $-0{,}0678$ & $-0{,}0413$\\
+Volatilité : coefficient AI News & $+0{,}0068$ & $+0{,}0048$\\
+\bottomrule
+\end{tabularx}
+\vspace{0.1cm}
+\parbox{\textwidth}{\footnotesize \emph{Source :} Salisu et Badmus (2026), tableau 2. Tous les coefficients reproduits dans ce tableau sont indiqués comme statistiquement significatifs au seuil de 0,1\,\% dans l'article. Il s'agit d'estimations publiées, non de nos propres calculs.}
+\end{table}
+
+Les coefficients estimés sont plus marqués, en valeur absolue, pour les actions liées à l'IA dans cet exemple. Cela motive la comparaison entre groupes, mais \textbf{la simple différence numérique de deux coefficients ne constitue pas un test de différence statistique}. Une régression avec interaction, ou un test approprié de contraste, serait nécessaire pour l'établir formellement.
+
+\subsection{Performance des prévisions de prime de risque}
+Les tableaux~3 et~4 de l'article présentent des \emph{RMSE relatives}. Le tableau~\ref{tab:forecast} reprend quelques résultats hors échantillon, pour l'indicateur AI News et le contrôle VIX, comparés à la moyenne historique.
+\begin{table}[H]
+\centering\small
+\caption{Exemples de RMSE relatives publiées : AI News + VIX contre moyenne historique}
+\label{tab:forecast}
+\begin{tabularx}{\textwidth}{@{}Xccc@{}}
+\toprule
+\textbf{Variable / catégorie} & \textbf{3 mois} & \textbf{6 mois} & \textbf{12 mois}\\
+\midrule
+Prime de risque -- actions IA & $0{,}7452$ & $0{,}7220$ & $0{,}6838$\\
+Prime de risque -- conventionnelles & $0{,}6512$ & $0{,}6394$ & $0{,}6493$\\
+Volatilité -- actions IA & $0{,}5366$ & $0{,}5871$ & $0{,}6994$\\
+Volatilité -- conventionnelles & $0{,}5608$ & $0{,}5594$ & $0{,}5738$\\
+\bottomrule
+\end{tabularx}
+\vspace{0.1cm}
+\parbox{\textwidth}{\footnotesize \emph{Source :} Salisu et Badmus (2026), tableaux 3 et 4. Ces quatre séries illustrent certaines configurations de l'étude ; elles ne résument pas la totalité des comparaisons.}
+\end{table}
+
+Dans ces configurations, tous les ratios sont inférieurs à un : le modèle enrichi présente une erreur inférieure à celle de la référence. Les auteurs concluent de manière générale à une utilité prédictive de l'information liée à l'IA, avec des résultats souvent plus favorables lorsque le contrôle est le \textbf{VIX} plutôt que l'inflation.
+
+Il faut néanmoins conserver les exceptions : le tableau~4 comporte aussi des valeurs \textbf{supérieures à un}, notamment pour certaines prévisions de volatilité utilisant AI News et l'inflation face à la marche aléatoire. Par conséquent, l'affirmation « l'indicateur IA améliore toujours toutes les prévisions » serait contraire aux chiffres publiés.
+
+\subsection{Portée économique}
+L'article associe donc un accroissement de l'attention à l'IA à une prime de risque plus faible et à une volatilité des rendements plus élevée. Ces deux résultats ne décrivent pas la même notion de risque. La diminution d'une prime estimée ne suffit pas pour qualifier un actif de globalement « plus sûr » ; l'investisseur doit également considérer la dispersion des rendements et les autres risques économiques pertinents.
+
+\section{Analyse critique et limites de l'étude}
+\subsection{Points forts}
+L'étude traite une question actuelle et propose une démarche structurée : elle confronte plusieurs mesures de l'attention, distingue deux catégories de titres, utilise des variables de contrôle de marché et évalue la performance des prévisions sur des observations hors échantillon. La présence de deux références et de plusieurs horizons rend la comparaison plus informative qu'une simple régression sur la totalité des données.
+
+\subsection{L'attention n'est pas la valeur économique de l'information}
+Une limite importante tient à la \textbf{construction de l'indicateur de nouvelles}. Google Trends mesure l'intérêt manifesté par les recherches ; l'étude ne pondère pas explicitement les événements selon le montant économique engagé, leur surprise, leur fiabilité, leur tonalité ou leur importance stratégique. Il serait toutefois incorrect de décrire cette variable comme un simple \emph{nombre d'articles} : une annonce majeure peut indirectement accroître l'indice parce qu'elle déclenche davantage de recherches.
+
+L'annonce du \textbf{22 juillet 2019} concernant un \textbf{investissement de 1 milliard de dollars de Microsoft dans OpenAI} et leur partenariat stratégique constitue un exemple illustratif \cite{Microsoft2019,OpenAI2019}. L'événement combine une dimension financière et des perspectives de développement de l'infrastructure Azure ; cependant, sa signification économique n'est pas directement codée dans un indice d'intérêt de recherche. Deux mois présentant une attention agrégée comparable pourraient ainsi contenir des événements de portée économique très différente.
+
+Cette observation ne prouve pas que l'annonce ait provoqué un mouvement boursier particulier : une telle affirmation demanderait une \emph{étude d'événement} et une évaluation des anticipations déjà incorporées dans les cours. Elle motive seulement une distinction conceptuelle essentielle entre \textbf{volume d'attention} et \textbf{information financière pertinente}.
+
+\subsection{Numérisation, exposition médiatique et perception de l'IA pendant la pandémie}
+Dans leur commentaire de la figure~1, \cite{SalisuBadmus2026} remarquent que la première phase de progression de l'intérêt pour l'IA, de \textbf{mars 2018 à novembre 2022}, englobe la pandémie de COVID-19. Ils avancent, à titre d'explication possible, que le télétravail et les restrictions économiques ont pu encourager le recours à l'IA afin d'améliorer la productivité (section~2, p.~16128). Il s'agit cependant d'une \textbf{interprétation proposée par les auteurs}, et non d'un mécanisme causal établi par leurs estimations. La période considérée commence, en outre, avant la pandémie.
+
+Nous proposons une \textbf{hypothèse complémentaire, appuyée sur des travaux relatifs aux usages numériques} : la crise sanitaire a accéléré les pratiques en ligne et intensifié la circulation de contenus médiatiques. Au Royaume-Uni, l'autorité de régulation Ofcom (2021) rapporte que la proportion de ménages non connectés est passée d'environ \textbf{11\,\% en mars 2020 à 6\,\% en mars 2021} ; ces données portent sur l'accès à Internet, et non spécifiquement sur l'IA \cite{Ofcom2021}. Le phénomène concerne également certains publics âgés : parmi les adultes britanniques de 65 ans ou plus \emph{déjà utilisateurs d'Internet}, la part déclarant au moins un appel vidéo hebdomadaire est passée de \textbf{22\,\% en février 2020 à 61\,\% en mai 2020} \cite{Ofcom2020}. Cette dernière évolution atteste d'un changement des usages numériques, sans démontrer une adoption équivalente des réseaux sociaux.
+
+Une étude menée en Espagne auprès d'adultes âgés de 18 à 92 ans documente par ailleurs des augmentations déclarées de l'usage des réseaux sociaux pendant le confinement : dans son enquête d'avril 2020, \textbf{64\,\% des répondants de plus de 61 ans} rapportent une hausse de cet usage, contre environ 76\,\% des 18--34 ans \cite{Rosen2022}. La mesure repose sur une enquête nationale espagnole et ne doit pas être généralisée automatiquement aux investisseurs américains. À l'inverse, l'enquête américaine de Pew Research Center (2021) montre que l'usage déclaré de Facebook est resté \textbf{stable à 69\,\% entre 2019 et 2021} dans la population adulte, tandis que YouTube a progressé de 73\,\% à 81\,\% \cite{Pew2021}. Il faut donc distinguer \textbf{intensification des usages}, \textbf{nouveaux entrants} et \textbf{croissance de la pénétration} de chaque plateforme ; une progression uniforme de tous les réseaux ne serait pas étayée.
+
+Ce contexte rend plausible une augmentation de \emph{l'exposition répétée} à l'actualité de l'IA, y compris parmi des personnes auparavant peu familiarisées avec ces sujets. La psychologie de l'\emph{effet de simple exposition} apporte un mécanisme théorique possible : une méta-analyse de Montoya \emph{et al.} (2017) documente une relation entre répétition, familiarité et appréciation, qui dépend néanmoins des conditions d'exposition \cite{Montoya2017}. Dans notre hypothèse, la circulation de messages sur l'IA pourrait ainsi contribuer à son \textbf{ancrage dans l'environnement médiatique et social}, au-delà des seuls besoins de productivité ou de télétravail.
+
+\textbf{Cette hypothèse n'est pas une démonstration que la population juge désormais l'IA sûre, qu'elle lui fait davantage confiance, ou qu'elle la considère comme un investissement moins risqué.} Les études citées concernent l'accès à Internet, les réseaux sociaux et la familiarisation avec des stimuli, \emph{pas} directement la confiance envers l'IA ni les anticipations de rendements boursiers. Une surexposition peut aussi provoquer de la méfiance. Enfin, les indicateurs Google Trends de l'article mesurent \emph{l'intérêt de recherche}, non l'exposition passive aux contenus, la répétition algorithmique ou les croyances des individus : ils ne permettent pas d'arbitrer entre les explications concurrentes.
+
+Pour éprouver cette piste, il faudrait étudier conjointement l'attention Google Trends, la consommation de médias, la proportion de nouveaux utilisateurs, les représentations de l'IA et les variations boursières, avec des données datées disponibles avant chaque prévision. Il faudrait distinguer les phases \textbf{2018--2019}, \textbf{2020--2021} et \textbf{2022} afin de ne pas attribuer rétrospectivement à la pandémie toute la progression observée depuis mars 2018. Il s'agit d'une \emph{proposition de recherche critique} et non d'un résultat causal obtenu par notre équipe.
+
+\subsection{Sens de l'information, classification et période}
+Les auteurs reconnaissent explicitement qu'ils ne distinguent pas les nouvelles positives des nouvelles négatives. Un indice d'attention élevée peut ainsi agréger des annonces de progrès, des risques de régulation et des controverses sans préciser leur signe. De plus, la définition des 26 entreprises « IA » repose sur une sélection d'ETF thématiques et n'est pas nécessairement stable dans le temps : sa reconstruction doit éviter d'utiliser involontairement une composition observée ultérieurement pour représenter des périodes antérieures.
+
+Enfin, la forte hausse de l'attention à l'IA après 2022 peut rendre la relation sensible au choix de la fenêtre temporelle. Une analyse par sous-périodes ou un test de stabilité pourrait aider à distinguer le pouvoir prédictif persistant d'une relation dominée par un changement de régime.
+
+\subsection{Réplicabilité, calendrier de l'information et interprétation causale}
+Le texte principal ne détaille pas entièrement certaines décisions de construction des variables, le calendrier opérationnel des prévisions ou l'algorithme d'estimation. L'accès limité aux données originales risque donc d'entraver la reproduction exacte. Toute substitution de source ou de convention de mesure devra être signalée.
+
+La variable contemporaine $\Delta AI\_News_t$ soulève également une question de disponibilité en temps réel. Nous devrons montrer pour chaque prévision quelles valeurs étaient connues à sa date d'émission. Enfin, les associations présentées, même statistiquement significatives, ne démontrent pas mécaniquement un effet causal de la recherche d'informations sur les rendements.
+
+\Needspace{18\baselineskip}
+\subsection{Perspective de recherche : couche NLP et agent IA (non réalisée)}
+La limite identifiée dans la section~8.2 ouvre la voie à une \textbf{extension originale}, distincte de la reproduction de \cite{SalisuBadmus2026}. L'article exploite Google Trends pour mesurer \emph{l'attention portée à l'IA}, sans attribuer directement un poids à \emph{l'importance financière d'une annonce particulière}. Notre proposition vise à analyser le contenu des nouvelles, puis à vérifier si cette information enrichie améliore effectivement la prévision des primes de risque et de la volatilité.
+
+Il convient de \textbf{distinguer deux composantes complémentaires} :
+\begin{enumerate}
+\item \textbf{Une couche de traitement automatique du langage naturel (NLP)} qui étudierait les titres et les textes d'actualité afin de décrire le \emph{sentiment} (positif, négatif ou neutre), la \emph{pertinence économique} pour une entreprise ou un secteur, la \emph{nouveauté} et l'\emph{importance potentielle} de l'événement. Un montant annoncé, tel que l'investissement de Microsoft dans OpenAI en 2019, ne suffirait toutefois pas à déterminer son impact : le caractère inattendu de l'information et les anticipations déjà incorporées dans les prix devraient également être considérés.
+\item \textbf{Un agent IA d'identification et de classification des événements} qui pourrait rechercher des sources datées, rapprocher les articles traitant d'une même annonce, éviter leur double comptage, relever les entreprises concernées et produire une classification justifiée avec ses sources. Son rôle serait de structurer les événements ; la définition des scores resterait encadrée par un protocole transparent et vérifiable, plutôt que laissée à une appréciation arbitraire du système.
+\end{enumerate}
+
+Un \emph{indice de contenu informationnel} pourrait alors être construit à titre exploratoire :
+\begin{equation}
+\label{eq:extension}
+I_t=\sum_{i=1}^{N_t} w_{i,t}\,s_{i,t},
+\end{equation}
+où $N_t$ est le nombre d'événements distincts retenus au cours de la période $t$, $w_{i,t}$ un poids non négatif représentant leur importance économique estimée et $s_{i,t}$ une mesure \emph{signée} de leur orientation. Dans l'analyse, il serait également pertinent de conserver \textbf{séparément} un score d'importance non signé, car une annonce négative peut être aussi importante qu'une annonce positive. Cette formule constitue exclusivement une \textbf{proposition méthodologique de notre équipe}, et non une équation ni un résultat de l'article étudié.
+
+Le protocole pourrait comparer trois familles de modèles : (i) les références sans information liée à l'IA ; (ii) les spécifications reproduites avec Google Trends ; (iii) des spécifications enrichies par les caractéristiques extraites par NLP. Les gains éventuels seraient évalués \emph{hors échantillon}, notamment par la RMSE et, lorsque ses hypothèses sont satisfaites, par le test de Clark--West. La collecte des articles, la classification, l'étalonnage des scores et l'estimation devraient respecter la \textbf{disponibilité chronologique réelle} des informations, afin d'éviter toute fuite de données futures ; la qualité des étiquettes et la stabilité des scores devraient aussi être contrôlées.
+
+Cette extension répond à une question précise : \emph{la signification économique, la tonalité et la nouveauté des nouvelles liées à l'IA apportent-elles un pouvoir prédictif supplémentaire par rapport à la seule attention mesurée par Google Trends ?} \textbf{Aucun modèle NLP ni agent n'a été implémenté ou évalué à ce stade.} La priorité du projet demeure la reproduction fidèle de l'article ; cette piste est conservée comme perspective de recherche ultérieure.
+
+\section{Conclusion et préparation de la reproduction}
+La contribution principale de \cite{SalisuBadmus2026} est de documenter le contenu prédictif des recherches liées à l'IA pour les primes de risque et la volatilité des actions américaines. Les résultats rapportés associent une attention accrue à des primes de risque plus faibles et à une volatilité plus forte, tout en suggérant des gains de prévision, souvent davantage marqués avec l'introduction du VIX.
+
+Notre lecture souligne néanmoins l'importance de distinguer \textbf{attention observée}, \textbf{valeur informative réelle des nouvelles} et \textbf{effet causal}. Les chiffres du présent document proviennent exclusivement de l'article : aucun modèle n'a encore été réestimé dans le cadre de notre projet.
+
+Pour préparer la suite, nous retiendrons les priorités suivantes :
+\begin{enumerate}
+\item documenter la définition exacte de chaque variable et rechercher les données ou fichiers supplémentaires des auteurs ;
+\item établir la composition et les règles d'agrégation des groupes d'actions ;
+\item préciser la construction de la volatilité et l'harmonisation du taux sans risque ;
+\item reconstruire la procédure Westerlund--Narayan / FQGLS avant toute comparaison d'estimations ;
+\item spécifier les dates d'origine des prévisions et les informations disponibles à chacune d'elles ;
+\item comparer les résultats répliqués aux tableaux~1--4 de l'article sans chercher à ajuster artificiellement les coefficients.
+\end{enumerate}
+
+Cette fiche sert de base à la \textbf{synthèse théorique et bibliographique de la semaine~2}, puis au protocole de collecte et à l'étude empirique des semaines suivantes.
+
+\clearpage
+\renewcommand{\refname}{Références bibliographiques}
+\phantomsection
+\addcontentsline{toc}{section}{Références bibliographiques}
+\begin{thebibliography}{99}
+\bibitem{SalisuBadmus2026}
+Salisu, A.~A., \& Badmus, S. (2026).
+\newblock Can AI news improve the out-of-sample forecasts of risk premia and volatility in the U.S. stock market?
+\newblock \emph{Quality \& Quantity}, \textbf{60}, 16125--16144.
+\newblock \url{https://doi.org/10.1007/s11135-026-02816-9}.
+
+\bibitem{WesterlundNarayan2012}
+Westerlund, J., \& Narayan, P.~K. (2012).
+\newblock Does the choice of estimator matter when forecasting returns?
+\newblock \emph{Journal of Banking \& Finance}, \textbf{36}(9), 2632--2640.
+\newblock \url{https://doi.org/10.1016/j.jbankfin.2012.06.005}.
+
+\bibitem{WesterlundNarayan2015}
+Westerlund, J., \& Narayan, P.~K. (2015).
+\newblock Testing for predictability in conditionally heteroskedastic stock returns.
+\newblock \emph{Journal of Financial Econometrics}, \textbf{13}(2), 342--375.
+\newblock \url{https://doi.org/10.1093/jjfinec/nbu001}.
+
+\bibitem{ClarkWest2007}
+Clark, T.~E., \& West, K.~D. (2007).
+\newblock Approximately normal tests for equal predictive accuracy in nested models.
+\newblock \emph{Journal of Econometrics}, \textbf{138}(1), 291--311.
+\newblock \url{https://doi.org/10.1016/j.jeconom.2006.05.023}.
+
+\bibitem{BarberOdean2008}
+Barber, B.~M., \& Odean, T. (2008).
+\newblock All that glitters: The effect of attention and news on the buying behavior of individual and institutional investors.
+\newblock \emph{Review of Financial Studies}, \textbf{21}(2), 785--818.
+
+\bibitem{Microsoft2019}
+Microsoft (22 juillet 2019).
+\newblock \emph{OpenAI forms exclusive computing partnership with Microsoft to build new Azure AI supercomputing technologies}.
+\newblock \href{https://news.microsoft.com/source/2019/07/22/openai-forms-exclusive-computing-partnership-with-microsoft-to-build-new-azure-ai-supercomputing-technologies/}{Communiqué officiel de Microsoft, 22 juillet 2019}.
+
+\bibitem{OpenAI2019}
+OpenAI (22 juillet 2019).
+\newblock \emph{Microsoft invests in and partners with OpenAI to support us building beneficial AGI}.
+\newblock \href{https://openai.com/index/microsoft-invests-in-and-partners-with-openai/}{Publication officielle d'OpenAI, 22 juillet 2019}.
+\bibitem{Ofcom2021}
+Ofcom (2021).
+\newblock \emph{Digital divide narrowed by pandemic, but around 1.5m homes remain offline}.
+\newblock Communiqué institutionnel, 28 avril 2021.
+\newblock \url{https://www.ofcom.org.uk/media-use-and-attitudes/online-habits/digital-divide-narrowed-but-around-1.5m-homes-offline}.
+
+\bibitem{Ofcom2020}
+Ofcom (2020).
+\newblock \emph{UK's internet use surges to record levels}.
+\newblock Présentation des résultats de l'enquête \emph{Online Nation}.
+\newblock \url{https://www.ofcom.org.uk/media-use-and-attitudes/online-habits/uk-internet-use-surges}.
+
+\bibitem{Rosen2022}
+Rosen, A.~O., Holmes, A.~L., Balluerka, N., Hidalgo, M.~D., Gorostiaga, A., Gómez-Benito, J., \& Huedo-Medina, T.~B. (2022).
+\newblock Is social media a new type of social support? Social media use in Spain during the COVID-19 pandemic: A mixed methods study.
+\newblock \emph{International Journal of Environmental Research and Public Health}, \textbf{19}(7), 3952.
+\newblock \url{https://doi.org/10.3390/ijerph19073952}.
+
+\bibitem{Pew2021}
+Auxier, B., \& Anderson, M. (2021).
+\newblock \emph{Social media use in 2021}.
+\newblock Pew Research Center, 7 avril 2021.
+\newblock \url{https://www.pewresearch.org/internet/2021/04/07/social-media-use-in-2021/}.
+
+\bibitem{Montoya2017}
+Montoya, R.~M., Horton, R.~S., Vevea, J.~L., Citkowicz, M., \& Lauber, E.~A. (2017).
+\newblock A re-examination of the mere exposure effect: The influence of repeated exposure on recognition, familiarity, and liking.
+\newblock \emph{Psychological Bulletin}, \textbf{143}(5), 459--498.
+\newblock \url{https://doi.org/10.1037/bul0000085}.
+\end{thebibliography}
+
+\end{document}
